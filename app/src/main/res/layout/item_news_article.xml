@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?selectableItemBackground"
+    >
+
+  <com.google.android.material.card.MaterialCardView
+      android:id="@+id/cardView"
+      android:layout_width="0dp"
+      android:layout_height="200dp"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="3dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:id="@+id/imageView"
+        />
+
+  </com.google.android.material.card.MaterialCardView>
+
+  <TextView
+      android:id="@+id/tvTitle"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      app:layout_constraintTop_toBottomOf="@id/cardView"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginTop="8dp"
+      tools:text="ilkkjlkjdflakj"
+      android:textColor="@color/black"
+      android:textSize="16sp"
+      />
+
+  <TextView
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp"
+      android:gravity="start"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/tvTitle"
+      android:id="@+id/tvTime"
+      app:layout_constraintEnd_toStartOf="@id/btnBookmark"
+      />
+
+  <androidx.appcompat.widget.AppCompatImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:srcCompat="@drawable/ic_bookmark"
+      android:layout_marginTop="8dp"
+      android:id="@+id/btnBookmark"
+      app:layout_constraintTop_toBottomOf="@id/tvTitle"
+      app:layout_constraintEnd_toEndOf="parent"
+      />
+
+  <androidx.constraintlayout.widget.Barrier
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:constraint_referenced_ids="tvTime,btnBookmark"
+      app:barrierDirection="bottom"
+      android:id="@+id/barrier"/>
+
+  <View
+      android:layout_width="0dp"
+      android:layout_height="1dp"
+      android:id="@+id/divider"
+      android:layout_marginTop="8dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/barrier"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:background="#80000000"
+      />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

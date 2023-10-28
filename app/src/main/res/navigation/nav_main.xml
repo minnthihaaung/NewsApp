@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/topHeadlinesFragment">
+
+  <fragment
+      android:id="@+id/topHeadlinesFragment"
+      android:name="com.mta.newsapp.feature.topheadline.TopHeadlinesFragment"
+      android:label="TopHeadlinesFragment"
+      tools:layout="@layout/fragment_top_headlines">
+    <action
+        android:id="@+id/action_topHeadlinesFragment_to_newsArticleDetailFragment"
+        app:destination="@id/newsArticleDetailFragment">
+
+      <argument
+          android:name="url"
+          android:defaultValue="https://www.google.com"
+          app:argType="string" />
+
+      <argument
+          android:name="title"
+          android:defaultValue="News Title"
+          app:argType="string" />
+
+      <argument
+          android:name="favourite"
+          android:defaultValue="false"
+          app:argType="boolean" />
+
+    </action>
+
+  </fragment>
+
+
+  <fragment
+      android:id="@+id/savedNewsFragment"
+      android:name="com.mta.newsapp.feature.savednews.SavedNewsFragment"
+      android:label="SavedNewsFragment"
+      tools:layout="@layout/fragment_saved_news">
+    <action
+        android:id="@+id/action_savedNewsFragment_to_newsArticleDetailFragment"
+        app:destination="@id/newsArticleDetailFragment">
+
+      <argument
+          android:name="url"
+          android:defaultValue="https://www.google.com"
+          app:argType="string" />
+
+      <argument
+          android:name="title"
+          android:defaultValue="News Title"
+          app:argType="string" />
+
+      <argument
+          android:name="favourite"
+          android:defaultValue="false"
+          app:argType="boolean" />
+
+    </action>
+  </fragment>
+
+  <fragment
+      android:id="@+id/newsArticleDetailFragment"
+      android:name="com.mta.newsapp.feature.newsdetail.NewsArticleDetailFragment"
+      android:label="NewsArticleDetailFragment"
+      tools:layout="@layout/fragment_news_detail">
+
+    <argument
+        android:name="url"
+        android:defaultValue="https://www.google.com"
+        app:argType="string" />
+
+    <argument
+        android:name="title"
+        android:defaultValue="News Title"
+        app:argType="string" />
+
+    <argument
+        android:name="favourite"
+        android:defaultValue="false"
+        app:argType="boolean" />
+
+  </fragment>
+
+
+</navigation>
