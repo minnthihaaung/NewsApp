@@ -8,6 +8,7 @@ import com.mta.newsapp.domain.newsarticle.usecase.UpdateNewsArticleFavouriteUseC
 import com.mta.newsapp.domain.newsarticle.usecase.UpdateNewsArticleFavouriteUseCase.Params
 import com.mta.newsapp.helper.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -24,7 +25,7 @@ class SavedNewsViewModel @Inject constructor(
     viewModelScope.launch {
       val result = runCatching {
 
-        getAllFavouriteNewsArticlesAsFlowUseCase.execute(Unit).collect { newsArticles ->
+        getAllFavouriteNewsArticlesAsFlowUseCase.execute(Unit).collectLatest { newsArticles ->
           allFavNewsArticlesLiveData.postValue(Result.success(newsArticles))
         }
       }

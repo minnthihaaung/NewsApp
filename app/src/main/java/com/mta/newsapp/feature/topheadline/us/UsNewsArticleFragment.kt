@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewbinding.ViewBinding
 import com.mta.newsapp.core.BaseViewBindingFragment
 import com.mta.newsapp.databinding.FragmentNewsArticleListBinding
+import com.mta.newsapp.domain.exception.NetworkException
 import com.mta.newsapp.feature.commonadapter.NewsArticleListAdapter
 import com.mta.newsapp.feature.topheadline.TopHeadlinesSharedViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +53,16 @@ class UsNewsArticleFragment : BaseViewBindingFragment<FragmentNewsArticleListBin
         binding.recyclerView.isVisible = true
         newsArticleListAdapter.submitList(data)
       }.onFailure {
-        Toast.makeText(requireContext(), "Error fetching news article", Toast.LENGTH_SHORT).show()
+        if (it is NetworkException)
+          Toast.makeText(
+            requireContext(), "Error fetching news article error code ${(it).errorCode}",
+            Toast.LENGTH_SHORT
+          ).show()
+        else
+          Toast.makeText(
+            requireContext(), "Error fetching news article ${it.message ?: "something"}",
+            Toast.LENGTH_SHORT
+          ).show()
       }
     }
   }
