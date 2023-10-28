@@ -7,6 +7,7 @@ import com.mta.newsapp.domain.newsarticle.repository.NewsArticleRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
@@ -41,7 +42,7 @@ class NewsArticleRepositoryImpl @Inject constructor(
 
       newsArticleCacheSource.getCacheNewsArticlesWithCategoryAsFlow(
         category = NewsCategory.us.name
-      ).collect {
+      ).collectLatest {
         send(it.map { item -> item.mapToNewsArticle() }.sortedByDescending { it.publishedAt })
       }
 
@@ -76,7 +77,7 @@ class NewsArticleRepositoryImpl @Inject constructor(
 
       newsArticleCacheSource.getCacheNewsArticlesWithCategoryAsFlow(
         category = category.name
-      ).collect {
+      ).collectLatest {
         send(it.map { item -> item.mapToNewsArticle() }.sortedByDescending { it.publishedAt })
       }
 
@@ -98,7 +99,7 @@ class NewsArticleRepositoryImpl @Inject constructor(
 
   override fun getAllFavouriteNewsArticlesAsFlow(): Flow<List<NewsArticle>> {
     return channelFlow {
-      newsArticleCacheSource.getAllFavouriteNewsArticlesAsFlow().collect {
+      newsArticleCacheSource.getAllFavouriteNewsArticlesAsFlow().collectLatest {
         send(it.map { item -> item.mapToNewsArticle() }.sortedByDescending { it.publishedAt })
       }
     }

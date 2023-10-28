@@ -9,6 +9,7 @@ import com.mta.newsapp.domain.newsarticle.usecase.UpdateNewsArticleFavouriteUseC
 import com.mta.newsapp.domain.newsarticle.usecase.UpdateNewsArticleFavouriteUseCase.Params
 import com.mta.newsapp.helper.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -28,7 +29,7 @@ class CategoryNewsArticleViewModel @Inject constructor(
       val result = runCatching {
 
         getNewsArticlesWithCategoryAsFlowUseCase.execute(NewsCategory.valueOf(category))
-          .collect { newsArticles ->
+          .collectLatest { newsArticles ->
             newsArticleWithCategoryLiveData.postValue(Result.success(newsArticles))
           }
       }

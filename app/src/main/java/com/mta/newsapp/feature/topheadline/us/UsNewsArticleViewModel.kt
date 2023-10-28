@@ -28,7 +28,7 @@ class UsNewsArticleViewModel @Inject constructor(
     viewModelScope.launch {
       val result = runCatching {
 
-        getNewsArticlesAsFlowUseCase.execute(Unit).collect { newsArticles ->
+        getNewsArticlesAsFlowUseCase.execute(Unit).collectLatest { newsArticles ->
           allNewsArticlesLiveData.postValue(Result.success(newsArticles))
         }
       }

@@ -34,6 +34,8 @@ class UsNewsArticleFragment : BaseViewBindingFragment<FragmentNewsArticleListBin
   override fun onBindView() {
     super.onBindView()
 
+    Toast.makeText(requireContext(), "on bind view us", Toast.LENGTH_SHORT).show()
+
     newsArticleListAdapter = NewsArticleListAdapter(onItemClick = { item ->
 
       sharedViewModel.onNewsArticleDetailClickLiveData.postValue(item)
